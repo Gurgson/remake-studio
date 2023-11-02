@@ -1,0 +1,1 @@
+export type TLinks = {href:string, children: React.ReactNode | string};
