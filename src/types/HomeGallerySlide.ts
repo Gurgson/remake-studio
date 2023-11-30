@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { MouseEventHandler, ReactNode } from "react"
 
 export type HomeGallerySlideProps ={
 
@@ -6,7 +6,7 @@ export type HomeGallerySlideProps ={
         description?: ReactNode,
         image: string
         button?: {
-          handleClick: void,
+          handleClick: MouseEventHandler,
           buttonText: string
         }
 

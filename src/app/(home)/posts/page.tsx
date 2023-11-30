@@ -1,9 +1,8 @@
 import React from 'react'
 
-const CMSPage = () => {
+export default async function VideoPage() {
+    
   return (
     <div>page</div>
   )
 }
-
-export default CMSPage

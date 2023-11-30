@@ -1,8 +1,8 @@
 
 import Image from 'next/image'
 import React, { FC } from 'react'
-import Button from '../Button/Button'
-import { ButtonSize, ButtonType } from '@/enums/Button'
+import Button from '../../Button/Button'
+import { ButtonType } from '@/enums/Button'
 import {  HomeGallerySlideProps } from '@/types/HomeGallerySlide'
 interface IProps{
     props: HomeGallerySlideProps

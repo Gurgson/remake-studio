@@ -1,0 +1,1 @@
+export type TLinks = {href:string, innerText: React.ReactNode | string};

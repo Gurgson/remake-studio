@@ -22,8 +22,12 @@ const config: Config = {
     extend:{
      keyframes: {
       show: {
-        '0%': { opacity: "0%", transform: "translateX(-100%)" },
+        '0%': { opacity: "0%", transform: "translateX(-100%) " },
         "100%": {opacity: "100%",transform: "translateX(none)"}
+      },
+      showFromRight: {
+        '0%': {opacity:"0%", transform: "translateX(60%) scale(50%)"},
+        "100%": {opacity: "100%",transform: "scale(1) translateX(none)"}
       },
       hide: {
         '0%': { opacity: "100%"},
@@ -32,7 +36,8 @@ const config: Config = {
     },
     animation: {
       show: "show 0.7s",
-      hide: "hide 1s"
+      hide: "hide 1s",
+      showFromRight: "showFromRight 1s"
     }
     
     }

@@ -26,7 +26,7 @@ const Slider : FC<IProps> = ({children, props}) => {
         setSlide((val)=>val-1);
     },[currentSlideIndex, children.length]);
     //utils
-    const visbilityClass = `${(isMenuVisible)?"opacity-1":"opacity-0"} duration-500 transition`;
+    const visbilityClass = `${(isMenuVisible)?"opacity-1":"opacity-0"} duration-500 transition origin-left `;
     const buttonStyles = `${visbilityClass} absolute h-full top-0 z-30 text-center w-20 text-primary-white `
     const menuVisibility = {
         onMouseEnter: ()=>{setMenuVisibility(true)},

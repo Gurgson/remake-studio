@@ -1,8 +1,8 @@
 import Slider from '@/components/Slider/Slider'
-import HomeGallerySlide from '@/components/Slides/HomeGallerySlide'
+import HomeGallerySlide from '@/components/Slider/Slides/HomeGallerySlide'
 import { HomeGallerySlideProps } from '@/types/HomeGallerySlide'
 
-export default function Home() {
+export default async function Home() {
   const gallery :Array<HomeGallerySlideProps> = [
     {
       image: "/HomeGallery/cameras.jpg",
