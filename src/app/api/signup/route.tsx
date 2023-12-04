@@ -30,7 +30,7 @@ export async function POST(req:Request) {
             hashedPassword: hashPassword
         }});
         
-        return NextResponse.json<JSONResponse>({
+        return NextResponse.json<JSONResponse<string>>({
             status: "success",
             message: "User created"
         }, {status: 200})  
@@ -48,7 +48,7 @@ export async function POST(req:Request) {
             }
         }
         
-        return NextResponse.json<JSONResponse>({
+        return NextResponse.json<JSONResponse<SignUpFormData>>({
             status: "failed",
             message: err
         }, {status: 400})

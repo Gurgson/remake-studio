@@ -22,8 +22,8 @@ const config: Config = {
     extend:{
      keyframes: {
       show: {
-        '0%': { opacity: "0%", transform: "translateX(-100%) " },
-        "100%": {opacity: "100%",transform: "translateX(none)"}
+        '0%': { opacity: "0%", transform: "scale(50%) translateX(-100%) " },
+        "100%": {opacity: "100%",transform: "scale(1) translateX(none)"}
       },
       showFromRight: {
         '0%': {opacity:"0%", transform: "translateX(60%) scale(50%)"},

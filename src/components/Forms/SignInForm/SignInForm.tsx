@@ -2,19 +2,16 @@
 import Button from '@/components/Button/Button'
 import TextInput from '@/components/Inputs/TextInput/TextInput'
 import { ButtonType } from '@/enums/Button'
-import { TextInputType } from '@/enums/TextInput'
 import { signIn, useSession,  } from 'next-auth/react'
 import {  useRouter } from 'next/navigation'
 import React, { FC, FormEvent, use, useCallback, useEffect, useState } from 'react'
 import { FaSquareGithub, FaSquareFacebook, FaSquareGooglePlus } from "react-icons/fa6";
-interface IProps{
-  className : string
-}
+
 const blankFormData : SignInFormData = {
   username: "", 
   password: ""
 };
-const SignInForm  :FC<IProps> = ({className}) => {
+const SignInForm  :FC = () => {
   const router = useRouter();
   //form data
   const [credentials, setCredentials] = useState<SignInFormData>(blankFormData);
@@ -41,9 +38,9 @@ const SignInForm  :FC<IProps> = ({className}) => {
 
   };
   return (
-    <form className={`${className}`}>
-      <TextInput props={{errorMessage: err.username, type: TextInputType.text, placeholder: "Username", handleChange:(e)=>{setCredentials({...credentials, username: e.target.value})}} }></TextInput>
-      <TextInput props={{errorMessage:err.password, type: TextInputType.password, placeholder: "Password",handleChange:(e)=>{setCredentials({...credentials, password: e.target.value})}} }></TextInput>
+    <form className={` col-span-2 grid grid-cols-1 gap-8 animate-show`}>
+      <TextInput className='' props={{errorMessage: err.username, type: "text", placeholder: "Username", handleChange:(e)=>{setCredentials({...credentials, username: e.target.value})}} }></TextInput>
+      <TextInput props={{errorMessage:err.password, type: "password", placeholder: "Password",handleChange:(e)=>{setCredentials({...credentials, password: e.target.value})}} }></TextInput>
       <Button props={{isSubmit: true,isDisabled:isLoading,type: ButtonType.fill, handleClick: onSubmit}}>Sign In With Your Credentials </Button>
       <div className='text-center flex  justify-around w-full items-center'>
         <hr className=' w-1/3 bg-primary-accent'/>      

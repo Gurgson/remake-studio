@@ -11,7 +11,8 @@
   --color-grey-light: #efefef; 
   --color-error: #D82700;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+    scroll-behavior: smooth;
+  }
 
 body {
   background-color: var(--color-white);

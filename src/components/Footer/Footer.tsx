@@ -5,13 +5,13 @@ import React, { FC } from 'react'
 
 const Footer : FC = () => {
   const links:  Array<TLinks> = [{
-    href: "/Contact",
+    href: "/contact",
     innerText: "Contact"
   },{
-    href: "/Privacy",
+    href: "/privacy",
     innerText: "Term of Services"
   },{
-    href: "/Delivery",
+    href: "/delivery",
     innerText: "shipping and returns"
   }]
   return (

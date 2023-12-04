@@ -8,8 +8,16 @@ type SignInFormData =  {
     username:string,
     password: string,
 }
-type JSONResponse = {
+type ContactFormData =  {
+    firstName:string,
+    lastName: string,
+    mail: string,
+    subject: string,
+    message: string,
+}
+type JSONResponse<T>= {
     status: "failed" | "success",
-    message: unknown
+
+    message: T
 }
 

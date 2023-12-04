@@ -1,8 +1,9 @@
 import React from 'react'
 
-export default async function VideoPage() {
-    
+const DeliveryPage = async () => {
   return (
     <div>page</div>
   )
 }
+
+export default DeliveryPage

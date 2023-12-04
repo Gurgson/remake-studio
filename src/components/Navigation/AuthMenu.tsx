@@ -9,7 +9,6 @@ import { SlLogout } from "react-icons/sl";
 import { VscAccount } from "react-icons/vsc";
 const AuthMenu = async () => {
     const session = await getServerSession(authOpt)
-    console.log("client",session)
     return (
         <div className="flex gap-8">
             {
@@ -21,8 +20,9 @@ const AuthMenu = async () => {
             }
             {
                 session && <>
-                    <VscAccount className=" w-8 h-8  hover:text-primary-accent cursor-pointer"/>
-
+                    <Link href="/account">
+                        <VscAccount className=" w-8 h-8  hover:text-primary-accent cursor-pointer"/>
+                    </Link>
                     <Link href="/api/auth/signout">
                         <SlLogout className=" w-8 h-8  hover:text-primary-accent cursor-pointer"/>
                     </Link>

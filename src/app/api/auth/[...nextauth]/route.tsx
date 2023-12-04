@@ -26,7 +26,7 @@ const credProvider = CredentialsProvider({
         const doesPassMatch = await compare(credentials.password, user.hashedPassword);
         if(!doesPassMatch)
             return null;
-        console.log(user);
+        // console.log(user);
         return {
             id: user.id,
             username: user.username
