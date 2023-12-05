@@ -10,9 +10,14 @@
   --color-grey: #d8d8d8; 
   --color-grey-light: #efefef; 
   --color-error: #D82700;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     scroll-behavior: smooth;
   }
+@media screen and (max-width: 600px) {
+  :root{
+    font-size: 90%;
+  }
+  
+}
 
 body {
   background-color: var(--color-white);

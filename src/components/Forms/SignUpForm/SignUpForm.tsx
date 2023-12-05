@@ -1,7 +1,6 @@
 "use client"
 import Button from '@/components/Button/Button'
 import TextInput from '@/components/Inputs/TextInput/TextInput'
-import { ButtonType } from '@/enums/Button'
 import React, {  FC, useState } from 'react'
 import PasswordStrengthBar from '../PasswordStrengthBar/PasswordStrengthBar'
 interface IProps {
@@ -36,7 +35,7 @@ const SignUpForm : FC<IProps> = ({changeForm}) => {
         <TextInput props={{errorMessage:formError.password,type:"password", placeholder:"Password",handleChange: (e)=>{setFormData({...formData, password: e.target.value})}}}></TextInput>
         <PasswordStrengthBar props={{password: formData.password}}/>
         <TextInput props={{errorMessage:formError.confirmPassword, type:"password", placeholder:"Confirm Password", handleChange: (e)=>{setFormData({...formData, confirmPassword: e.target.value})}}}></TextInput>
-        <Button props={{type:ButtonType.fill, handleClick: ()=>{onSubmit()}, isDisabled: formLoading}}>Sign In</Button>
+        <Button props={{handleClick: ()=>{onSubmit()}, isDisabled: formLoading}}>Sign In</Button>
     </form>
   )
 }

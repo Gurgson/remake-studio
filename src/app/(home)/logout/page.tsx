@@ -1,5 +1,6 @@
 "use client"
 import Button from '@/components/Button/Button'
+import { ButtonSize } from '@/components/Button/Button-types'
 import { ButtonType } from '@/enums/Button'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -13,7 +14,7 @@ const LogoutPage = () => {
         <div className='grid grid-cols-2 gap-2'>
             <Button props={{
                 type: ButtonType.fill,
-                isSmall: true,
+                size: ButtonSize.small,
                 handleClick: ()=>{
                     signOut({
                         "redirect": true,
@@ -26,7 +27,7 @@ const LogoutPage = () => {
             </Button>
             <Button props={{
                 type: ButtonType.outlined,
-                isSmall: true,
+                size: ButtonSize.small,
                 handleClick: ()=>{
                     router.back();
                     

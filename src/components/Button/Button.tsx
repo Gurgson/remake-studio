@@ -1,47 +1,38 @@
 "use client"
-import { ButtonSize, ButtonType, OutlinedButtonColor } from '@/enums/Button'
 import React, { FC, MouseEventHandler } from 'react'
-import { LiaSpinnerSolid } from "react-icons/lia";
-
+import { ButtonSize, ButtonType } from './Button-types'
 interface IProps {
     props: {
-        // size: ButtonSize
-        type: ButtonType
-        outlineColor?: OutlinedButtonColor
-        isSmall?: boolean,
-        handleClick?:  MouseEventHandler,
-        isDisabled?: boolean,
+        handleClick?: MouseEventHandler,
+        type?: ButtonType,
+        size?: ButtonSize,
         isSubmit?: boolean,
-    },
-    className?:string,
+        isDisabled?: boolean
+    }
+    className?: string,
     children?: string
 }
-
-const Button : FC<IProps> =  ({props, className, children}) => {
-    props.outlineColor = props.outlineColor || OutlinedButtonColor.white;
-    const commonStyles = `${(props.isSmall)?"px-4 py-2":"px-8 py-4"} text-center border-2 font-bold text-xl rounded-md capitalize hover:bg-primary-accent duration-200"}`;
-    const commonProps ={
-        disabled: props.isDisabled?true:false,
+const Button : FC<IProps>= ({props, children, className}) => {
+    let size = "";
+    switch (props.size) {
+        case ButtonSize.small:
+            size = "py-2 px-4"
+            break;
+        case (ButtonSize.big || null ): 
+        default:
+            size = "py-4 px-8"
+            break;
+    }
+    let commonStyles = `${size} ${className} border-bg-primary-black border-2 rounded-lg capitalize `;
+    let commonProps = {
         onClick: props.handleClick,
-    
-    } 
-    const commonInnerText = (props.isDisabled)?<LiaSpinnerSolid className="animate-spin text-lg mx-auto"/>:children;
-    return (
-    <>
-        {props.type === ButtonType.outlined && 
-        <button 
-            {...commonProps}
-            type={(props.isSubmit)?"submit":'button'}
-            className={`${className} border-primary-${props.outlineColor} ${commonStyles}`}
-        >{commonInnerText}</button>}
-        {props.type === ButtonType.fill && 
-        <button 
-            {...commonProps}
-            type={(props.isSubmit)?"submit":'button'}
-            className={` ${className} text-primary-white bg-primary-black  ${commonStyles} `}  
-        >{commonInnerText}</button>}
-    </>
-  )
+        disabled: (props.isDisabled)?true:false
+    }
+    if(props.type === ButtonType.outlined)
+        return  <button {...commonProps} type={(props.isSubmit)?"submit":"button"} className={`${commonStyles} hover:bg-secondary-greyLight hover:border-primary-accent hover:text-primary-accent`}>{children}</button>
+        
+    return <button {...commonProps} type={(props.isSubmit)?"submit":"button"}  className={`${commonStyles} bg-primary-black hover:bg-primary-accent text-primary-white `}>{children}</button>
+  
 }
 
 export default Button

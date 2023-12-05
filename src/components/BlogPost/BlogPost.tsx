@@ -9,7 +9,7 @@ interface IProps {
 const BlogPost : FC<IProps>= ({data}) => {
   const date = new Date(data.cretedAt);
   return (
-    <div className=' w-full p-3 border-2 my-5 rounded-lg cursor-pointer hover:border-primary-accent'>
+    <div className='w-full p-3 border-2 my-5 rounded-lg cursor-pointer hover:border-primary-accent'>
       <Link href={`/post/${data.id}`} className="grid gap-3">
         <p className=' font-semibold text-2xl uppercase'>{data.title}</p>
         <hr className=' w-3/4 border-b-[1px] mx-auto border-secondary-grey'/>

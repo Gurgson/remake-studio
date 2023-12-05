@@ -1,33 +1,80 @@
 import { TLinks } from '@/types/NavItem'
 import Link from 'next/link'
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
+import TextInput from '../Inputs/TextInput/TextInput'
+import { FaLinkedinIn, FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
+type ExternalLink = {
+  href: string,
+  icon: ReactNode
+}
 
 const Footer : FC = () => {
-  const links:  Array<TLinks> = [{
+  const internalLinks:  Array<TLinks> = [{
     href: "/contact",
     innerText: "Contact"
   },{
     href: "/privacy",
     innerText: "Term of Services"
   },{
-    href: "/delivery",
+    href: "/shipping",
     innerText: "shipping and returns"
   }]
-  return (
-    <footer className='w-full border-t  border-secondary-grey py-12'>
-      <div className='flex justify-between flex-wrap'>
-        <div className='flex gap-10 flex-col-reverse lg:flex-row'>
-          {links.map((link, index)=><Link  href={link.href} key={`footer-link-${index}`} className='uppercase text-base text-secondary-greyDark font-normal leading-7'> {link.innerText}</Link>)}
-        </div>
-        <form className='flex  relative w-80 text-primary-accent'>
-        <input type="email" placeholder='Give an email, get newsletter' className=' px-1 py-1 leading-6 outline-primary-accent border-b-primary-accent border-b-2 w-full'/>
-          <button type="submit" className='absolute right-1'>&rarr;</button>
-        </form>
-      </div>
-      <div className='flex'>
+  const externalLinks : Array<ExternalLink> = [
+    {
+      href: "https://www.linkedin.com/",
+      icon: <FaLinkedinIn/> 
+    },
+    {
+      href: "https://www.facebook.com/",
+      icon: <FaFacebookF/> 
+    },
+    {
+      href: "https://www.instagram.com/",
+      icon: <FaInstagram/> 
+    },
+    {
+      href: "https://twitter.com/",
+      icon: <FaXTwitter/> 
+    }, 
 
-      </div>
+  ]
+  return (
+    <footer className='grid  w-full border-t border-secondary-grey gap-5 justify-center py-5 md:grid-cols-2'>
+        <div className='flex gap-10 flex-wrap justify-between grid-cols-1 md'>
+          {internalLinks.map((link, index)=>
+          <Link  
+            href={link.href} 
+            key={`footer-link-${index}`} 
+            className='uppercase text-base text-secondary-greyDark font-normal'
+            > 
+              {link.innerText}
+          </Link>)}
+        </div>
+
+        <form className='flex relative items-center w-full grid-cols-1 md:justify-self-end md:w-4/5'>
+          <TextInput className='w-full' props={{type:"email", placeholder:"Newsletter email"}}/>
+          <button 
+            type="submit" 
+            className='absolute right-1 top-1 md:top-5 peer-focus:text-primary-accent'>
+              &rarr;
+            </button>
+        </form>
+
+        <p className=' text-center grid-cols-1 md:text-left'>
+          &copy; 2021 Shelly. Terms of use and privacy policy.
+        </p>
+
+        <div className='flex gap-6 justify-center grid-cols-1 md:justify-self-end '>
+          {externalLinks.map((item, key)=>
+          <a 
+          key={`footer-external-link-${key}}`} 
+          href={item.href}
+          target="_blank">
+            {item.icon}
+          </a>)}
+        </div>
+
     </footer>
   )
 }

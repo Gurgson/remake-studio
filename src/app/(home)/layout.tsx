@@ -4,9 +4,12 @@ import './../globals.css'
 import Footer from '@/components/Footer/Footer'
 import HomeNavigation from '@/components/Navigation/HomeNavigation'
 import { Providers } from './providers'
+ import {DM_Sans} from "next/font/google"
 
-
-const inter = Inter({ subsets: ['latin'] })
+ const sans = DM_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Remake Studio',
@@ -21,11 +24,11 @@ export default function RootLayout({
 }) {
   
   return (
-    <html lang="en">
-      <body className={`${inter.className} px-24 py-16`}>
+    <html lang="en" className={`${sans.className}`}>
+      <body className={`px-10 md:px-20   py-8 scroll`}>
         <Providers>
           <HomeNavigation/>
-          <main>
+          <main className=' min-h-screen py-10'>
             {children}
           </main>
           <Footer/>
