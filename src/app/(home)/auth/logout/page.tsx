@@ -1,7 +1,6 @@
 "use client"
 import Button from '@/components/Button/Button'
-import { ButtonSize } from '@/components/Button/Button-types'
-import { ButtonType } from '@/enums/Button'
+import { ButtonSize, ButtonType } from '@/components/Button/Button-types'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -17,8 +16,11 @@ const LogoutPage = () => {
                 size: ButtonSize.small,
                 handleClick: ()=>{
                     signOut({
-                        "redirect": true,
-                        "callbackUrl": "/"
+                        "redirect": false
+                    })
+                    .then(()=>{
+                        router.refresh();
+                        router.push("/");
                     })
                     
                 }

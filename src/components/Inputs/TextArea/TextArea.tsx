@@ -1,9 +1,9 @@
 "use client"
 import FormError from '@/components/Forms/FormError/FormError'
-import React, { FC, useRef} from 'react'
+import React, { FC, ReactNode, useRef} from 'react'
 import { IInput, TStandardInputProps } from '../InputInterface';
 
-const TextArea : FC<IInput<TStandardInputProps<HTMLTextAreaElement>>> = ({props, className}) => {
+const TextArea : FC<IInput<TStandardInputProps<HTMLTextAreaElement>>& {children?: string}> = ({props, className, children}) => {
   const textareRef = useRef<HTMLTextAreaElement>(null);
   console.log(textareRef.current?.value);
   return (
@@ -11,14 +11,16 @@ const TextArea : FC<IInput<TStandardInputProps<HTMLTextAreaElement>>> = ({props,
       <textarea 
       onChange={props.handleChange}
       ref={textareRef} 
-      className={`h-full px-1 py-1 text-base border-b-2 border-secondary-grey hover:border-primary-accent outline-2 outline-primary-accent`}
-      placeholder={props.placeholder || "..."}>
+      className={ ` h-full px-1 py-1 text-base border-b-2 border-secondary-grey hover:border-primary-accent outline-2 outline-primary-accent`}
+      placeholder={props.placeholder || "..."}
+      defaultValue={children}>
+        
       </textarea>
       {/* this elements shows what field was for when placeholder is gone*/}
       {textareRef.current?.value && 
-        <div className={` animate-show absolute -top-4 bg-primary-white left-1 text-primary-accent text-xs}`}>
+        <div className={` rounded  animate-show absolute -top-4 bg-primary-white px-2 left-1 text-primary-accent text-xs}`}>
           {
-            props.placeholder || "..."
+            props.placeholder || null
         }
         </div>
       }

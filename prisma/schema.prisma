@@ -5,42 +5,51 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// prisma/schema.prisma
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
-
-
 model User {
-  id            String    @id @default(cuid())
+  id            String       @id @default(uuid())
   username      String  @unique
-  hashedPassword String
+  provider      String 
   userRole      UserRoles @default(user)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  options UserOptions? 
+  comments Comments[]
   likedPosts Likes[]
-  commentedPosts Comments[]
-  
 }
+model UserOptions {
+  id            String       @id @default(uuid())
+  userId        String  @unique
+  user User @relation(fields: [userId], references: [id])
+  displayedName String?
+  hashedPassword String
 
+}
 enum UserRoles {
   user
   admin
 }
+model Newsletter {
+  mail String @unique
+}
+// s
 
-model Video {
-  id String @id @default(cuid())
-  url String
+model Comments {
+  id            String       @id @default(uuid())
+  userId  String
+  user User @relation(fields: [userId], references: [id])
+  postId Int // there would be normally post Id relation hovever im using posts from jsonplaceholder
+  contents String @db.Text
+  createdAt DateTime @default(now())
 }
 model Likes {
   id String @id @default(uuid())
-  postId Int 
-  userId User @relation(fields: [id], references: [id]) 
-}
-model Comments {
-  id String @id @default(uuid())
+  userId String
   postId Int
-  createdAt DateTime @default(now())
-  userId User @relation(fields: [id], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }

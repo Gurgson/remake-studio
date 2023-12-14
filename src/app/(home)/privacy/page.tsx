@@ -1,5 +1,5 @@
 import React from 'react'
-
+export const dynamic = "force-static"
 const PrivacyPage = async () => {
   return (
     <div className='mx-auto max-w-3xl grid gap-10 animate-show'>

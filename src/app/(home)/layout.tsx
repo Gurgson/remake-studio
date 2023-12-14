@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './../globals.css'
 import Footer from '@/components/Footer/Footer'
-import HomeNavigation from '@/components/Navigation/HomeNavigation'
 import { Providers } from './providers'
  import {DM_Sans} from "next/font/google"
+import HomeNavigation from '@/components/Navigation/HomeNavigation/HomeNavigation'
 
  const sans = DM_Sans({
   subsets: ['latin'],

@@ -1,8 +1,8 @@
-import { TLinks } from '@/types/NavItem'
 import Link from 'next/link'
 import React, { FC, ReactNode } from 'react'
 import TextInput from '../Inputs/TextInput/TextInput'
 import { FaLinkedinIn, FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { TLinks } from '../Navigation/LinkPropType';
 
 type ExternalLink = {
   href: string,
@@ -62,10 +62,14 @@ const Footer : FC = () => {
         </form>
 
         <p className=' text-center grid-cols-1 md:text-left'>
-          &copy; 2021 Shelly. Terms of use and privacy policy.
+          &copy; 2023 Remake Studio. Terms of use and privacy policy.
         </p>
 
-        <div className='flex gap-6 justify-center grid-cols-1 md:justify-self-end '>
+        <div className='flex gap-6 items-center grid-cols-1 md:justify-self-end '>
+          <span className=' md:hidden '>
+            Follow us
+          </span>
+          <hr className=' md:hidden  border-b-2 border-t-0 w-12'/>
           {externalLinks.map((item, key)=>
           <a 
           key={`footer-external-link-${key}}`} 

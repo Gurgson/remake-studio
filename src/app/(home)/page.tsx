@@ -1,6 +1,7 @@
 import Slider from '@/components/Slider/Slider'
 import HomeGallerySlide from '@/components/Slider/Slides/HomeGallerySlide'
 import { HomeGallerySlideProps } from '@/types/HomeGallerySlide'
+import { signIn } from 'next-auth/react';
 
 export default async function Home() {
   const gallery :Array<HomeGallerySlideProps> = [
@@ -32,6 +33,7 @@ export default async function Home() {
         <Slider props={{autoplay: 12000}}>
           {SliderItems}
         </Slider>
+        
         
     </section>
   )

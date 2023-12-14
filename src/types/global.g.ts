@@ -20,4 +20,3 @@ type JSONResponse<T>= {
 
     message: T
 }
-

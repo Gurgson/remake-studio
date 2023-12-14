@@ -1,9 +1,8 @@
 import React,{FC} from 'react'
-import Logo from '../Logo/Logo'
-import { TLinks } from '@/types/NavItem'
-import NavItem from './NavItem'
-import AuthMenu from './AuthMenu'
-
+import HomeNavigationItem from './HomeNavigationItem'
+import { TLinks } from '../LinkPropType';
+import Logo from '@/components/Logo/Logo';
+import AuthPanel from '../AuthPanel/AuthMenu';
 
 const HomeNavigation : FC = async () => {
     const links : Array<TLinks>= [
@@ -21,7 +20,7 @@ const HomeNavigation : FC = async () => {
         }
         
       ]
-      const navItems = links.map((link, index)=><NavItem props={{
+      const navItems = links.map((link, index)=><HomeNavigationItem props={{
         data: link,
 
     }} key={`navigation-item-${index}`}/>);
@@ -33,7 +32,7 @@ const HomeNavigation : FC = async () => {
         <div className='hidden sm:flex flex-1 justify-end px-6'>
             {navItems}
         </div>
-        <AuthMenu/>
+        <AuthPanel/>
   
 
           <label className="peer sm:hidden ml-10 w-10 h-10  z-30 relative inline-flex items-center cursor-pointer p-1">
@@ -49,9 +48,6 @@ const HomeNavigation : FC = async () => {
             {navItems}
             </div>
         </label>
-       
-        
-
     </nav>
   )
 }

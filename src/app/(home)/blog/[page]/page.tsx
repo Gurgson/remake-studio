@@ -15,23 +15,24 @@ const limit = 10;
 type StaticParams = {
   page: string
 }
-export async function generateStaticParams() {
-  const posts = await fetch('http://localhost:3000/api/posts', {next: {revalidate: 60}});
-  const body : JSONResponse<PostResponse> = await posts.json();
-  const howManyPages = Math.ceil(body.message.amount / limit) -1;
-  const arr : Array<StaticParams> = [];
-  for(let i = 0; i< howManyPages; i++)
-  {
-    arr.push(
-      {
-        page: i.toString()
-      }
-    );
-  }
-  return arr
-}
+
+// export async function generateStaticParams() {
+//   const posts = await fetch("https://jsonplaceholder.typicode.com/posts");
+//   const body : Array<unknown> = await posts.json();
+//   const howManyPages = Math.ceil(body.length / limit) -1;
+//   const arr : Array<StaticParams> = [];
+//   for(let i = 0; i< howManyPages; i++)
+//   {
+//     arr.push(
+//       {
+//         page: i.toString()
+//       }
+//     );
+//   }
+//   return arr
+// }
 const BlogPage : FC<IProps> = async ({params}) => {
-  const res = await fetch(`http://localhost:3000/api/posts?page=${params.page}`, 
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/posts?page=${params.page}`, 
   {next: {
     revalidate: 60
   }})
@@ -39,7 +40,7 @@ const BlogPage : FC<IProps> = async ({params}) => {
   if(body.message.posts.length === 0)
     return notFound();
   return (
-    <div className=' container max-w-xl mx-auto'>
+    <div className=' container max-w-3xl mx-auto'>
       
       {
         body.message.posts.map((item, key)=> <BlogPost key={`BlogPost-item-${key}`} data={item}/>)

@@ -1,13 +1,16 @@
 
-import Button from "../Button/Button";
-import { getServerSession } from "next-auth";
+
+import { User, getServerSession } from "next-auth";
 import { authOpt } from "@/app/api/auth/[...nextauth]/route";
 import Link from "next/link";
 import { SlLogout } from "react-icons/sl";
 import { VscAccount } from "react-icons/vsc";
-import { ButtonSize } from "../Button/Button-types";
-const AuthMenu = async () => {
-    const session = await getServerSession(authOpt)
+import Button from "@/components/Button/Button";
+import { ButtonSize } from "@/components/Button/Button-types";
+
+const AuthPanel = async () => {
+    const session  = await getServerSession(authOpt);
+    // console.log(session);
     return (
         <div className="flex gap-8 grow sm:grow-0 justify-end">
             {
@@ -32,4 +35,4 @@ const AuthMenu = async () => {
   )
 }
 
-export default AuthMenu
+export default AuthPanel

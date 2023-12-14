@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt"
+import prisma from "@/app/utils/prisma";
 export async function POST(req:Request) {
     const err : SignUpFormData = {
         username: "",
@@ -9,7 +10,6 @@ export async function POST(req:Request) {
         confirmPassword: ""
     }
     const body : SignUpFormData =  await req.json();
-    const prisma = new PrismaClient;
     try {
         const {username, password, confirmPassword} = body;
         if(!username)
@@ -26,8 +26,16 @@ export async function POST(req:Request) {
             throw new Error(JSON.stringify(err))
         const hashPassword = await bcrypt.hash(body.password, 12);
         const user = await prisma.user.create({data: {
+            provider: "credentials",
             username: body.username,
-            hashedPassword: hashPassword
+
+            options: {
+                create: {
+                    hashedPassword: hashPassword
+                }
+            }
+        }, include: {
+            options: true
         }});
         
         return NextResponse.json<JSONResponse<string>>({
