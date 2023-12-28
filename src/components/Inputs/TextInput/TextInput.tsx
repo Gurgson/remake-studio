@@ -15,7 +15,8 @@ const TextInput : FC<IInput<TTextInputProps>> = ({props, className}) => {
     <label className={`${className} grid relative`}>
       <input onChange={props.handleChange}
       ref={inputRef} 
-      className={`h-full px-1 py-1 text-base border-b-2 border-secondary-grey hover:border-primary-accent outline-2 outline-primary-accent` }
+      autoComplete={" "}
+      className={`transition-all duration-300  h-full px-1 py-1 text-base border-b-2 border-secondary-grey hover:border-primary-accent outline-2 outline-primary-accent` }
       type={(props.type !== "password")?props.type:(isPassVisibile)?"text":"password"} 
       placeholder={props.placeholder || "..."}>
       </input>

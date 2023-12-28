@@ -7,7 +7,7 @@ const Select : FC<IInput<TSelectProps>> = ({props, className}) => {
   return (
     <label className={`${className} grid relative`}>
       <select onChange={props.handleChange}
-      className={` text-sm x-1 py-1 border-b-2 border-secondary-grey hover:border-primary-accent outline-2 outline-primary-accent` }
+      className={`transition-all duration-300 text-sm x-1 py-1 border-b-2 border-secondary-grey hover:border-primary-accent outline-2 outline-primary-accent` }
       placeholder={props.placeholder || "..."}
       defaultValue={props.options[0]}
       >

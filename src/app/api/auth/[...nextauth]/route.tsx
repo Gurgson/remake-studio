@@ -2,7 +2,7 @@
 import prisma from "@/app/utils/prisma";
 import { compare } from "bcrypt";
 import { AuthOptions } from "next-auth";
-import NextAuth from "next-auth/next";
+import NextAuth, { getServerSession } from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Github from "next-auth/providers/github";
 
@@ -36,9 +36,10 @@ const credProvider = CredentialsProvider({
         } 
         else 
         {
+            
             return {
                 id: user.id.toString(),
-                name: user.options?.displayedName || user.username
+                name: (user.options?.displayedName)?user.options.displayedName:user.username
             }
         }
     },
@@ -124,4 +125,7 @@ export const authOpt : AuthOptions = {
     
 }
 const handler = NextAuth(authOpt);
+export const getServSession = async ()=>{
+    return await getServerSession(authOpt)
+}
 export {handler as GET, handler as POST}

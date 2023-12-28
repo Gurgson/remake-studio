@@ -24,7 +24,7 @@ const Button : FC<IProps>= ({props, children, className}) => {
             size = "py-4 px-8"
             break;
     }
-    let commonStyles = `${size} ${className} cursor-pointer border-bg-primary-black border-2 rounded-lg capitalize flex justify-center items-center`;
+    let commonStyles = `${size} ${className} transition-all duration-300 cursor-pointer border-bg-primary-black border-2 rounded-lg capitalize flex justify-center items-center`;
     let commonProps = {
         onClick: props.handleClick,
         disabled: (props.isDisabled)?true:false,

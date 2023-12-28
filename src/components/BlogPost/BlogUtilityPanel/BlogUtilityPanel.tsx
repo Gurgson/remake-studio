@@ -1,9 +1,11 @@
 "use client"
 import { TPostStats } from '@/app/api/posts/[postId]/stats/route';
+import { toastMessage } from '@/app/utils/toast';
 import Link from 'next/link';
 import React, { FC, useState } from 'react'
 import { GoComment, GoHeart } from 'react-icons/go'
 import { IoIosLink } from "react-icons/io";
+import { toast } from 'react-toastify';
 
 interface IProps {
   data: {
@@ -27,7 +29,6 @@ const BlogUtilityPanel : FC<IProps>=  ({data}) => {
           method: "POST"
         })
         const body : JSONResponse<string> = await res.json();
-        console.log(res)
         setLikesDisability(true);
         if(body.message === "added")
         {
@@ -58,11 +59,12 @@ const BlogUtilityPanel : FC<IProps>=  ({data}) => {
         onClick={(e)=>{
           navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/post/${data.postId}`);
           e.currentTarget.classList.add("text-primary-accent");
+          toastMessage("Post link copied to clipboard.")
           setCopyState(true);
         }}
         className=' duration-500 hover:opacity-70 hover:text-secondary-greyDark flex items-center justify-center text-lg gap-2'>
         <IoIosLink/>
-        {(isCoppied)?"Link shared":"Share"}
+        Share
       </button>
   </div>
   )

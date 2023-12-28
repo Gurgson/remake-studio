@@ -1,10 +1,12 @@
 "use client"
 import { TComment } from '@/app/api/posts/[postId]/comments/route'
+import { toastMessage } from '@/app/utils/toast'
 import Button from '@/components/Button/Button'
 import { ButtonSize, ButtonType } from '@/components/Button/Button-types'
 import TextArea from '@/components/Inputs/TextArea/TextArea'
 import { useRouter } from 'next/navigation'
 import React, { FC, FormEvent, useCallback, useState } from 'react'
+import { toast } from 'react-toastify'
 
 interface IProps {
     data: {
@@ -40,6 +42,7 @@ const EditCommentForm : FC<IProps>= ({data, props,children}) => {
                 props.cancelForm();
             }
         setLoading(false);
+        toastMessage("Post edited.")
     },[formData, data.commentId, router, props])
     return (
     <form className='grid' onSubmit={onSubmit}>

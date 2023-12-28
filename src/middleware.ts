@@ -4,6 +4,6 @@ export const config = {
     matcher: [
             '/account',
             '/account/:path*'
-        ]  
+        ] 
     
 }

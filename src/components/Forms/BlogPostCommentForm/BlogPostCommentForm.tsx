@@ -6,6 +6,7 @@ import TextArea from "@/components/Inputs/TextArea/TextArea";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { FC, FormEvent, useCallback, useState } from 'react'
+import { toast } from "react-toastify";
 interface IProps {
   props: {
     id: number,
@@ -21,7 +22,6 @@ const BlogPostCommentForm : FC<IProps>= ({props}) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    console.log(formData);
     const url = `/api/posts/${props.id}/comments`;
     const res = await fetch(url, 
     {
@@ -35,6 +35,7 @@ const BlogPostCommentForm : FC<IProps>= ({props}) => {
       const resData : JSONResponse<string> = await res.json();
       setError(resData.message)
     }
+    toast("Comment added");
     router.refresh();
     setLoading(false);
   },[props.id, formData, router])

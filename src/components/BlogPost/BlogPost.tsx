@@ -1,4 +1,4 @@
-
+"USE CLIENT"
 import { Post } from '@/types/Posts'
 import { GoComment,GoHeart } from "react-icons/go";
 import React, { FC, ReactNode } from 'react'
@@ -19,7 +19,7 @@ const BlogPost : FC<IProps>= async ({data, className, props}) => {
   
   const date = new Date(data.createdAt);
   return (
-    <div className={`bg-secondary-greyLight w-full p-3 border-2 my-5 gap-4 rounded-lg ${(props?.canActive)?"${ hover:border-primary-accent cursor-default":"cursor-pointer"} ${className}`}>
+    <div className={` duration-300 transition-all shadow-md bg-secondary-greyLight w-full p-3 border-2 my-5 gap-4 rounded-lg ${(props?.canActive)?"${ hover:border-primary-accent cursor-default":"cursor-pointer"} ${className}`}>
       <div className=' flex-grow text-end text-xs font-bold text-secondary-greyDark'>{date.toLocaleDateString()}</div>
       <Link href={`/post/${data.id}`} className="grid gap-3">
         <p className=' font-semibold text-2xl uppercase'>{data.title}</p>

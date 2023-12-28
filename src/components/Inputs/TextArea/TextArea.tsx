@@ -5,13 +5,12 @@ import { IInput, TStandardInputProps } from '../InputInterface';
 
 const TextArea : FC<IInput<TStandardInputProps<HTMLTextAreaElement>>& {children?: string}> = ({props, className, children}) => {
   const textareRef = useRef<HTMLTextAreaElement>(null);
-  console.log(textareRef.current?.value);
   return (
     <label className={`${className} grid relative`}>
       <textarea 
       onChange={props.handleChange}
       ref={textareRef} 
-      className={ ` h-full px-1 py-1 text-base border-b-2 border-secondary-grey hover:border-primary-accent outline-2 outline-primary-accent`}
+      className={ ` transition-all duration-300  h-full px-1 py-1 text-base border-b-2 border-secondary-grey hover:border-primary-accent outline-2 outline-primary-accent`}
       placeholder={props.placeholder || "..."}
       defaultValue={children}>
         

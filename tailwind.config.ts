@@ -11,7 +11,8 @@ const config: Config = {
       primary: {
         accent: 'var(--color-accent)',
         white: 'var(--color-white)',
-        black: 'var(--color-black)'
+        black: 'var(--color-black)',
+        error: 'var(--color-error)'
       },
       secondary: {
         grey: 'var(--color-grey)',
@@ -30,26 +31,37 @@ const config: Config = {
         "100%": {opacity: "100%",transform: "scale(1) translateX(none)"}
       },
       showFrom0: {
-        '0%': { opacity: "0", heigth:"0px", transform: "scaleY(0)"},
-        "100%": {opacity: "100%", heigth:"100%", transform: "scaleY(1)"}
+        '0%': { opacity: "0", height:"0px", transform: "scaleY(0)"},
+        "100%": {opacity: "100%", height:"100%", transform: "scaleY(1)"}
       },
       hideTo0: {
-        "0%": {opacity: "100%", heigth:"100%", transform: "scaleY(1)"},
-        '100%': { opacity: "0", heigth:"0px", transform: "scaleY(0)"}
+        "0%": {opacity: "100%", height:"100%", transform: "scaleY(1)"},
+        '100%': { opacity: "0", height:"0px", transform: "scaleY(0)"}
         
-      }
+      },
+      zoom: {
+        '50%': {  transform: "scale(130%)"},
+        "100%": {transform: "scale(1)"}
+      },
+      slideInFromBottonm: {
+        '0%': {  opacity: "0", transform: "translateY(100px)"},
+        '100%': {  opacity: "100%", transform: "translateY(0)"},
+      },
     },
     animation: {
-      show: "show 0.7s",
+      show: "show 1s",
       showFrom0: "showFrom0 1s",
       hideTo0: "hideTo0 1s",
       showFromRight: "showFromRight 1s",
       ping1: "ping 1s infinite",
-  
+      slideBottom: "slideInFromBottonm 1.7s",
     }
     
     }
   },
-  plugins: [],
+  plugins: [
+    require('@kamona/tailwindcss-perspective'),
+    
+  ],
 }
 export default config

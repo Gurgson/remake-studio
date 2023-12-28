@@ -40,10 +40,10 @@ const BlogPage : FC<IProps> = async ({params}) => {
   if(body.message.posts.length === 0)
     return notFound();
   return (
-    <div className=' container max-w-3xl mx-auto'>
+    <div className=' container max-w-3xl mx-auto animate-show'>
       
       {
-        body.message.posts.map((item, key)=> <BlogPost key={`BlogPost-item-${key}`} data={item}/>)
+        body.message.posts.map((item, key)=> <BlogPost key={`BlogPost-item-${key}`} data={item} props={{canActive: true}}/>)
       }
       
       <BlogPostNavigation props={ { limitPetPage: limit, amount: body.message.amount || 0, current: params.page}}/>

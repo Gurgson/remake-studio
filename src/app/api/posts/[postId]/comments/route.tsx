@@ -1,15 +1,30 @@
 import { authOpt } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/app/utils/prisma";
-import {  Comments, User } from "@prisma/client";
+import {  Comments, User, UserOptions } from "@prisma/client";
 import { NextApiRequest } from "next";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 export type TComment = {
     comment: string
 }
+export type PrismaCommentData= {
+    user: {
+        username: string;
+        provider: string;
+        options: {
+            displayedName: string | null;
+        } | null;
+    };
+} & {
+    id: string;
+    userId: string;
+    postId: number;
+    contents: string;
+    createdAt: Date;
+}
 export type CommentResponse = {
     amount: number,
-    comments: Array<Comments & {user: User}>
+    comments: Array<PrismaCommentData>
 }
 export type params ={
     params: {
@@ -31,16 +46,27 @@ export async function GET(req: NextRequest, {params}: params){
             postId: +postId
         }, 
         include: {
-            user: true
+            user: {
+                select: {
+                    username: true,
+                    provider: true,
+                    options: {
+                        select: {
+                            displayedName: true
+                        }
+                    }
+                
+                }
+            }
+            
         },
         orderBy: {
             createdAt: "desc"
         }, 
-        // skip: pagination.page * pagination.start,
-        // take: pagination.start
 
-        
+    
     })
+
     return NextResponse.json<JSONResponse<CommentResponse>>({
         status: "success",
         message: {
