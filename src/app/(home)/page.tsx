@@ -54,7 +54,7 @@ export default async function Home() {
           <article className=''>
             <SlideIn>
               <h2 className=' text-2xl my-4 font-medium'>Top Trends</h2>
-              <Image loading='lazy' src="/Home-1.jpg" width={1080} height={1920} alt='home-1 image' className=' mx-auto h-auto aspect-video'/>
+              <Image loading='lazy' src="/Home-1.jpg" width={1299} height={1920} alt='home-1 image' className=' mx-auto h-auto aspect-video'/>
               <p className='my-6'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis. 
               </p>
@@ -68,7 +68,7 @@ export default async function Home() {
           <article>
             <SlideIn>
               <h2 className='text-2xl my-4 font-medium pt-4'>developed with care</h2>
-              <Image loading='lazy' src="/Home-2.jpg" width={1080} height={1920} alt='home-2 image' className= 'my-6 mx-auto h-auto aspect-video'/>
+              <Image loading='lazy' src="/Home-2.jpg" width={1440} height={1920} alt='home-2 image' className= 'my-6 mx-auto h-auto aspect-video'/>
               <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis. Nunc sed porta augue. Morbi porta tempor odio, in molestie diam bibendu.
               </p> 

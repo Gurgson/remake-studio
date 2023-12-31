@@ -14,7 +14,7 @@ const SlideIn : FC<IProps>= ({children, props}) => {
         if (!ref.current) return setScroll(false);
         if(scrolled)
             return;
-        setScroll(window.scrollY - 100 > ref.current.getBoundingClientRect().top);
+        setScroll(window.scrollY + 300 > ref.current.getBoundingClientRect().top);
       }, [ref, scrolled]);
     
       useEffect(() => {

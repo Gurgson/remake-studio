@@ -9,7 +9,7 @@ const Footer : FC = () => {
     innerText: "Contact"
   },{
     href: "/privacy",
-    innerText: "Term of Services"
+    innerText: "Terms of Service"
   },{
     href: "/shipping",
     innerText: "shipping and returns"

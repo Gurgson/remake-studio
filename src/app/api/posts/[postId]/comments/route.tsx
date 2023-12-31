@@ -14,7 +14,7 @@ export type PrismaCommentData= {
         options: {
             displayedName: string | null;
         } | null;
-    };
+    }
 } & {
     id: string;
     userId: string;

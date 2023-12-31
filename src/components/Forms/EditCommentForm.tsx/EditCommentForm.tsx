@@ -42,7 +42,7 @@ const EditCommentForm : FC<IProps>= ({data, props,children}) => {
                 props.cancelForm();
             }
         setLoading(false);
-        toastMessage("Post edited.")
+        toastMessage("Post edited")
     },[formData, data.commentId, router, props])
     return (
     <form className='grid' onSubmit={onSubmit}>

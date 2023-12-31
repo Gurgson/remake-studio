@@ -1,12 +1,11 @@
 "use client"
-import { TComment } from "@/app/api/posts/[postId]/comments/route";
+import { toastMessage } from "@/app/utils/toast";
 import Button from "@/components/Button/Button";
 import { ButtonSize, ButtonType } from "@/components/Button/Button-types";
 import TextArea from "@/components/Inputs/TextArea/TextArea";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { FC, FormEvent, useCallback, useState } from 'react'
-import { toast } from "react-toastify";
 interface IProps {
   props: {
     id: number,
@@ -35,7 +34,7 @@ const BlogPostCommentForm : FC<IProps>= ({props}) => {
       const resData : JSONResponse<string> = await res.json();
       setError(resData.message)
     }
-    toast("Comment added");
+    toastMessage("Comment added");
     router.refresh();
     setLoading(false);
   },[props.id, formData, router])

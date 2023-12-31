@@ -54,7 +54,7 @@ const config: Config = {
       hideTo0: "hideTo0 1s",
       showFromRight: "showFromRight 1s",
       ping1: "ping 1s infinite",
-      slideBottom: "slideInFromBottonm 1.7s",
+      slideBottom: "slideInFromBottonm 1.2s",
     }
     
     }

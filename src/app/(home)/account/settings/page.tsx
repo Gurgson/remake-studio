@@ -6,10 +6,13 @@ import ChangeUserNameForm from '@/components/Forms/ChangeUsernameForm/ChangeUser
 import TextInput from '@/components/Inputs/TextInput/TextInput';
 import SettingSection from '@/components/SettingSection/SettingSetion';
 import { getServerSession } from 'next-auth'
+import { notFound } from 'next/navigation';
 import React from 'react'
 
 const AccSettingsPage = async () => {
   const session = await getServerSession(authOpt);
+  if(session?.user.provider !== "credentials")
+    return notFound();
   return (
     <div className='py-4 max-w-2xl mx-auto grid gap-2'>
       <SettingSection props={{

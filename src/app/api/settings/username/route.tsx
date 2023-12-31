@@ -10,6 +10,7 @@ export async function POST(req: Request) {
         newUsername: ""
     }
     const session = await getServSession();
+
     if(!session || session.user.provider !== "credentials")
         return NextResponse.json<JSONResponse<string>>({
             message: "Not Authorized",

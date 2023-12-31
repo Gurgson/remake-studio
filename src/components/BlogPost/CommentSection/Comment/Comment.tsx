@@ -3,16 +3,13 @@ import { PrismaCommentData } from '@/app/api/posts/[postId]/comments/route';
 import { formatRelativeDate } from '@/app/utils/formatRelativeDate';
 import { toastMessage } from '@/app/utils/toast';
 import EditCommentForm from '@/components/Forms/EditCommentForm.tsx/EditCommentForm';
-import TextArea from '@/components/Inputs/TextArea/TextArea';
-import { Comments, User } from '@prisma/client'
 import { useSession } from 'next-auth/react';
-import { getServerSideProps } from 'next/dist/build/templates/pages';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {  useSearchParams } from 'next/navigation';
 import React, { FC, useEffect, useRef, useState } from 'react'
 
 interface IProps {
     props: {
-        data: PrismaCommentData,
+        data: PrismaCommentData
     }
 }
 const Comment : FC<IProps> =  ({props}) => {
@@ -21,14 +18,14 @@ const Comment : FC<IProps> =  ({props}) => {
     const [editingMode, setEditingMode] = useState<boolean>(false); 
     const [deteleMode, setDeletingMode] = useState<boolean>(false); 
     const [isClicked, setClickState] = useState<boolean>(false); 
-    const router = useRouter();
+
     const { data } = useSession();
     useEffect(()=>{
         if(share === props.data.id)
             ref.current?.scrollIntoView({});
     },[props.data.id, share])
     const ref = useRef<HTMLDivElement>(null)
-    
+
 
     return (
     <div ref={ref} onClick={()=>setClickState(true)} className={` rounded-xl px-4 py-2 gap-2 grid my-2 duration-500 ${(share === props.data.id && !isClicked)?" border-2 border-primary-accent bg-secondary-grey transition-all":""}`}>
@@ -86,7 +83,7 @@ const Comment : FC<IProps> =  ({props}) => {
                                     {
                                         ref.current?.classList.add("origin-bottom");
                                         ref.current?.classList.add("animate-hideTo0");
-                                        toastMessage("Post deleted.")
+                                        toastMessage("Post deleted")
                                         setTimeout(()=>{  
                                             ref.current?.classList.add("hidden");
 

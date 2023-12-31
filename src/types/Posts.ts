@@ -4,3 +4,10 @@ export type  Post = {
     body: string
     createdAt: Date
 }
+export type TPostStats = {
+    comments: number,
+    likes: {
+        isLiked: boolean,
+        amount: number
+    }
+}

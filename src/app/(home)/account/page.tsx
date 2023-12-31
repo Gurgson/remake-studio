@@ -1,12 +1,9 @@
-import { getServerSession } from 'next-auth';
 import React from 'react'
 
-const AccountPage = async () => {
+const AccPage = () => {
   return (
-    <div>
-
-    </div>
+    <></>
   )
 }
 
-export default AccountPage
+export default AccPage

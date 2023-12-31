@@ -1,10 +1,9 @@
-"USE CLIENT"
-import { Post } from '@/types/Posts'
+import { Post, TPostStats } from '@/types/Posts'
 import { GoComment,GoHeart } from "react-icons/go";
 import React, { FC, ReactNode } from 'react'
 import Link from 'next/link';
-import { TPostStats } from '@/app/api/posts/[postId]/stats/route';
 import BlogUtilityPanel from './BlogUtilityPanel/BlogUtilityPanel';
+import { getPostStats } from '@/lib/posts';
 interface IProps {
     data: Post,
     props?: {
@@ -14,9 +13,7 @@ interface IProps {
 
 }
 const BlogPost : FC<IProps>= async ({data, className, props}) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/posts/${data.id}/stats`);
-  const body : JSONResponse<TPostStats> = await res.json();
-  
+  const stats : TPostStats = await getPostStats(data.id);
   const date = new Date(data.createdAt);
   return (
     <div className={` duration-300 transition-all shadow-md bg-secondary-greyLight w-full p-3 border-2 my-5 gap-4 rounded-lg ${(props?.canActive)?"${ hover:border-primary-accent cursor-default":"cursor-pointer"} ${className}`}>
@@ -26,7 +23,7 @@ const BlogPost : FC<IProps>= async ({data, className, props}) => {
         <hr className=' w-3/4 border-b-[1px] mx-auto border-secondary-grey'/>
         <p className=' text-base'>{data.body}</p>
       </Link>
-      <BlogUtilityPanel data={{stats: body.message, postId: data.id }}/>
+      <BlogUtilityPanel data={{stats: stats, postId: data.id }}/>
     </div>
   )
 }
