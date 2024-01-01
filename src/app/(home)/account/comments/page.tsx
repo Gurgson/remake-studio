@@ -16,7 +16,7 @@ const CommentsHistory = async () => {
       {
         (comments.length === 0)
         ?
-        <p>You have not commented anynthing yet</p>
+        <p>You have not commented anything yet</p>
         :
           comments.map((item, index)=><Link key={`comment-history-${index}`} href={`/post/${item.postId}/?share=${item.id}`}>
             <Comment key={`comment-history-${index}`} props={{data:item}}/>

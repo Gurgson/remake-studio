@@ -7,6 +7,7 @@ import { Providers } from './providers'
 import HomeNavigation from '@/components/Navigation/HomeNavigation/HomeNavigation'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import GoToTop from '@/components/GoToTop/GoToTop'
  const sans = DM_Sans({
   subsets: ['latin'],
   display: 'swap',
@@ -42,6 +43,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer/>
+          <GoToTop/>
         </Providers>
         
       </body>
