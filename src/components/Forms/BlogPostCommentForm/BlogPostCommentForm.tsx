@@ -1,5 +1,5 @@
 "use client"
-import { TComment } from "@/app/api/posts/[postId]/comments/route";
+import { toastMessage } from "@/app/utils/toast";
 import Button from "@/components/Button/Button";
 import { ButtonSize, ButtonType } from "@/components/Button/Button-types";
 import TextArea from "@/components/Inputs/TextArea/TextArea";
@@ -21,7 +21,6 @@ const BlogPostCommentForm : FC<IProps>= ({props}) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    console.log(formData);
     const url = `/api/posts/${props.id}/comments`;
     const res = await fetch(url, 
     {
@@ -35,6 +34,7 @@ const BlogPostCommentForm : FC<IProps>= ({props}) => {
       const resData : JSONResponse<string> = await res.json();
       setError(resData.message)
     }
+    toastMessage("Comment added");
     router.refresh();
     setLoading(false);
   },[props.id, formData, router])

@@ -1,4 +1,5 @@
 "use client"
+import { toastUnsupported } from '@/app/utils/toast'
 import Button from '@/components/Button/Button'
 import Select from '@/components/Inputs/Select/Select'
 import TextArea from '@/components/Inputs/TextArea/TextArea'
@@ -26,7 +27,7 @@ const ContactForm = () => {
         <TextInput className='sm:col-span-2 col-span-4' props={{ handleChange:(e)=>{setFormData({...formData, mail: e.currentTarget.value} )}, type: "email", placeholder:"E-Mail"}}/>
         <Select className='sm:col-span-2 col-span-4' props={{ handleChange:(e)=>{setFormData({...formData, subject: e.currentTarget.value} )}, placeholder:"Subject", options: selOption}}/>
         <TextArea className='col-span-4 row-span-2' props={{ handleChange:(e)=>{setFormData({...formData, })}, placeholder:"Message"}}/>
-        <Button  className=' sm:col-span-2 sm:col-start-2 col-span-4' props={{isSubmit: true}}>SEND</Button>
+        <Button  className='sm:col-span-2 sm:col-start-2 col-span-4' props={{  handleClick: toastUnsupported}}>SEND</Button>
     </form>
   )
 }

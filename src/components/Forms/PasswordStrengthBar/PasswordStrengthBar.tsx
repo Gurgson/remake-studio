@@ -11,7 +11,7 @@ interface IRules {
 const rulesSet : Array<IRules> = [
     {
         rule: /([0-9])/,
-        comment: "Sagge password should include some numbers"
+        comment: "Safe password should include some numbers"
     },
     {
         rule: /([a-z])/,
@@ -19,7 +19,7 @@ const rulesSet : Array<IRules> = [
     },
     {
         rule: /([A-Z])/,
-        comment: "Safe password should include capitalize letters"
+        comment: "Safe password should include capital letters"
     },
     {
         rule: /([!@$%^&])/,
@@ -81,7 +81,7 @@ const PasswordStrengthBar : FC<IProps> = ({props}) => {
         <HiInformationCircle className=" peer absolute top-0 right-1 cursor-pointer hover:text-primary-accent duration-500"/>
         <aside className=' rounded-md p-3 hidden gap-2 w-64 bg-primary-accent absolute top-5 z-10 right-1 origin-top peer-hover:flex peer-hover:animate-showFromRight '>
             <ul className='text-xs list-disc list-inside text-primary-white'>
-                <p className=' text-base font-medium'>Minimal requirments:</p>
+                <p className=' text-base font-medium'>Minimal requirements:</p>
                 <li className={` indent-2 ${(props.password.length >= 5)?"opacity-10":""}`} >Password should have at least 5 characters</li>
                 <p className=' text-base font-medium'>For better password:</p>
                 {

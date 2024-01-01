@@ -28,7 +28,6 @@ export async function GET(req: NextRequest){
     const body : Array<Post>= await posts.json();
     const postList = body.slice(pagination.start * pagination.page, pagination.start * pagination.page + pagination.start);
     postList.map(item=>artificialDatePost(item));
-    console.log()
     return NextResponse.json<JSONResponse<PostResponse>>(
         {
             status:"success",

@@ -12,7 +12,7 @@ const CommentSection : FC<IProps> = async ({data, className}) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/posts/${data.postId}/comments`, {cache: "no-cache"});
     const body : JSONResponse<CommentResponse> =  await res.json();
     return (
-    <div className='w-full border-2 rounded-lg p-4 bg-secondary-greyLight'>
+    <div className=' shadow-md w-full border-2 rounded-lg p-4 bg-secondary-greyLight'>
         <BlogPostCommentForm   props={{id: +data.postId }}/>
         <hr className='mx-auto w-4/5 my-4  border-b-2 border-b-secondary-grey'/>
         {

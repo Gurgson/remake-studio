@@ -4,7 +4,7 @@ interface IProps {
 }
 const FormError : FC<IProps> = ({children}) => {
   return (
-    <p className={` text-primary-accent text-sm font-semibold h-5 ${(children)?"animate-show":" animate-hide"}`}>{children}</p>
+    <p className={` text-primary-error text-sm font-semibold h-5 ${(children)?"animate-show":" animate-hide"}`}>{children}</p>
   )
 }
 

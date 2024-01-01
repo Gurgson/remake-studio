@@ -22,11 +22,11 @@ const AccountLayout : FC<IProps> = async ({children}) => {
         },
     ]
     if(session?.user.provider === "credentials")
-        console.log(link.unshift(
+            link.unshift(
             {
                 href : `${basicUrl}settings`,
                 innerText : "Settings"
-            }))
+            })
    
     return (
     <>

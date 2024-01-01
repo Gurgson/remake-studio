@@ -1,15 +1,15 @@
 "use client"
+import { PrismaCommentData } from '@/app/api/posts/[postId]/comments/route';
 import { formatRelativeDate } from '@/app/utils/formatRelativeDate';
+import { toastMessage } from '@/app/utils/toast';
 import EditCommentForm from '@/components/Forms/EditCommentForm.tsx/EditCommentForm';
-import TextArea from '@/components/Inputs/TextArea/TextArea';
-import { Comments, User } from '@prisma/client'
 import { useSession } from 'next-auth/react';
-import { getServerSideProps } from 'next/dist/build/templates/pages';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {  useSearchParams } from 'next/navigation';
 import React, { FC, useEffect, useRef, useState } from 'react'
+
 interface IProps {
     props: {
-        data: Comments & {user: User},
+        data: PrismaCommentData
     }
 }
 const Comment : FC<IProps> =  ({props}) => {
@@ -18,20 +18,20 @@ const Comment : FC<IProps> =  ({props}) => {
     const [editingMode, setEditingMode] = useState<boolean>(false); 
     const [deteleMode, setDeletingMode] = useState<boolean>(false); 
     const [isClicked, setClickState] = useState<boolean>(false); 
-    const router = useRouter();
+
     const { data } = useSession();
     useEffect(()=>{
         if(share === props.data.id)
             ref.current?.scrollIntoView({});
     },[props.data.id, share])
     const ref = useRef<HTMLDivElement>(null)
-    
+
 
     return (
     <div ref={ref} onClick={()=>setClickState(true)} className={` rounded-xl px-4 py-2 gap-2 grid my-2 duration-500 ${(share === props.data.id && !isClicked)?" border-2 border-primary-accent bg-secondary-grey transition-all":""}`}>
         {/* bar with username and createdAt field */}
         <div className={` flex justify-between items-center duration-500`}>
-            <div className=' text-primary-accent text-lg'>{`${props.data.user.username}${(props.data.user.provider !== "credentials")?`@${props.data.user.provider}`:""}`}</div>
+            <div className=' text-primary-accent text-lg'>{`${props.data.user.options?.displayedName || props.data.user.username}${(props.data.user.provider !== "credentials")?`@${props.data.user.provider}`:""}`}</div>
             <div className=' text-secondary-greyDark text-sm'>{formatRelativeDate(date)}</div>
         </div>
         {/* viewmode */}
@@ -52,8 +52,8 @@ const Comment : FC<IProps> =  ({props}) => {
             <button onClick={
                 (e)=>{
                     navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/post/${props.data.postId}?share=${props.data.id}`);
-                    e.currentTarget.innerText = "COPIED";
-                    e.currentTarget.classList.add("text-primary-accent")
+                    e.currentTarget.classList.add("text-primary-accent");
+                    toastMessage("Comment link coppied to clipboard");
                 }
                 }
                 className={` cursor-pointer hover:text-primary-accent flex justify-center min-w-[3.5rem] `}>
@@ -78,15 +78,17 @@ const Comment : FC<IProps> =  ({props}) => {
                                     const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/posts/comment/${props.data.id}`, {
                                         method: "DELETE"
                                     })
-                                    console.log(res);
+                                    
                                     if(res.status === 200)
                                     {
                                         ref.current?.classList.add("origin-bottom");
                                         ref.current?.classList.add("animate-hideTo0");
+                                        toastMessage("Post deleted")
                                         setTimeout(()=>{  
                                             ref.current?.classList.add("hidden");
 
                                         },1000)
+                                        
                                     }
                                 }
                             } >Yes</button>
