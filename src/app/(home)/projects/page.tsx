@@ -1,8 +1,12 @@
 import SlideIn from '@/components/AnimationsFrame/SlideIn/SlideIn'
 import ProjectCard, { TProjectCard } from '@/components/ProjectCard/ProjectCard'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import React from 'react'
 
+export const metadata : Metadata = {
+  title: `${process.env.WEBSITE_NAME} - Projects`,
+}
 const ProjectPage = async () => {
   const projectsCardData :Array<TProjectCard> = [
     {

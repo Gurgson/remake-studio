@@ -1,8 +1,11 @@
 import ContactForm from '@/components/Forms/ContactForm/ContactForm'
+import { Metadata } from 'next';
 import Image from 'next/image'
 import React from 'react'
 import { MdMailOutline, MdLocalPhone, MdHouse } from "react-icons/md";
-
+export const metadata : Metadata = {
+  title: `${process.env.WEBSITE_NAME} - Contact Us`,
+}
 const ContactPage = () => {
   return (
     <>

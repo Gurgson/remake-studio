@@ -1,8 +1,11 @@
 import FAQItem from '@/components/FAQItem/FAQItem'
 import { FAQData } from '@/components/FAQItem/FAQItem-types'
+import { Metadata } from 'next';
 import React from 'react'
 const placeholderAnw = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
+export const metadata : Metadata = {
+  title: `${process.env.WEBSITE_NAME} - Terms Of Use`,
+}
 const DeliveryPage = async () => {
   const FAQ : Array<FAQData> = [
     {

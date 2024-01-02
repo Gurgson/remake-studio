@@ -5,10 +5,14 @@ import { Post, TPostStats } from '@/types/Posts';
 import { notFound } from 'next/navigation';
 
 export const getPosts = async (page: number = 0,start:number = 10000): Promise<Post[]>=> {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts`, {next: {revalidate:  3600}});
+    //this page is revalidated every day since it's external static api 
+    //if it was my own api i would revalidate static pages everytime i add new post in it's api handler
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts`, {next: {revalidate:  86400}});
     const posts : Array<Post>= await res.json();
     const postList = posts.slice(start * page , start * page + start);
     postList.map(post=>artificialDatePost(post));
+    if(postList.length === 0)
+        return notFound();
     return Promise.resolve(postList);
     
 }

@@ -1,5 +1,8 @@
+import { Metadata } from 'next'
 import React from 'react'
-export const dynamic = "force-static"
+export const metadata : Metadata = {
+  title: `${process.env.WEBSITE_NAME} - Privacy`,
+}
 const PrivacyPage = async () => {
   return (
     <div className='mx-auto max-w-3xl grid gap-10 animate-show'>
