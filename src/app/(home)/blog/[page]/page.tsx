@@ -2,7 +2,7 @@
 import { PostResponse } from '@/app/api/posts/route';
 import BlogPost from '@/components/BlogPost/BlogPost';
 import BlogPostNavigation from '@/components/BlogPostNavigation/BlogPostNavigation';
-import { getPosts } from '@/lib/posts';
+import { getPosts, getPostsCount } from '@/lib/posts';
 import { Post } from '@/types/Posts';
 import { notFound } from 'next/navigation';
 import React, { FC } from 'react'
@@ -32,7 +32,9 @@ export async function generateStaticParams() {
   return arr
 }
 const BlogPage : FC<IProps> = async ({params}) => {
-  const posts = await getPosts();
+  const {page} = params;
+  const posts = await getPosts(+page, 10);
+  const count = await getPostsCount();
   
 
   return (
@@ -42,7 +44,7 @@ const BlogPage : FC<IProps> = async ({params}) => {
         posts.map((item, key)=> <BlogPost key={`BlogPost-item-${key}`} data={item} props={{canActive: true}}/>)
       }
       
-      <BlogPostNavigation props={ { limitPetPage: limit, amount: posts.length || 0, current: params.page}}/>
+      <BlogPostNavigation props={ { limitPetPage: limit, amount: count, current: page}}/>
     </div>
   )
 }

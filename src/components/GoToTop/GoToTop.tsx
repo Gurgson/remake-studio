@@ -21,9 +21,9 @@ const GoToTop = () => {
         ref={ref} 
         type="button"
         onClick={scrollTo}
-        className={` ${view?"opacity-100 animate-showFromRight":"opacity-0"} duration-1000 rounded-[50%] transition-all min-h-[20px] justify-around bg-primary-accent p-4 text-3xl fixed right-4 bottom-4 flex uppercase items-center`}
+        className={`${view?"opacity-100 animate-showFromRight":"opacity-0"} hover:scale-105 shadow-lg duration-1000 rounded-[50%] transition-all min-h-[20px] justify-around border-2  p-4 text-3xl fixed right-4 bottom-4 flex uppercase items-center`}
     >
-        <FaArrowUp className=""/>
+        <FaArrowUp className=" peer-hover:rotate-90"/>
     </button>
   )
 }

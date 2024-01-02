@@ -12,6 +12,10 @@ export const getPosts = async (page: number = 0,start:number = 10000): Promise<P
     return Promise.resolve(postList);
     
 }
+export const getPostsCount = async () : Promise<number> => {
+    const posts = await getPosts();
+    return Promise.resolve(posts.length);
+}
 export const getOnePost = async( id: number)=> {
     const posts = await getPosts();
     const post = posts.filter(v=>v.id === id)
